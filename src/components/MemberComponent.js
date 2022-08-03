@@ -490,41 +490,42 @@ const MemberComponent = ({modalShowFn, 이용약관}) => {
     //체크박스 각 항목 체크시 멤버변수를 이용약관동의[] 배열에 저장
     const onChangeService=(e)=>{
         let temp = [];
+        const {이용약관동의} = field;
 
         if(e.target.checked){
             if(e.target.value==='무료배송, 할인쿠폰 등 혜택/정보 수신 동의'){
-                setField({...field, 이용약관동의:[...field.이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','SMS','이메일']});
+                setField({...field, 이용약관동의:[...이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','SMS','이메일']});
             }
             else if(field.이용약관동의.includes('SMS') && e.target.value==='이메일'){
-                setField({...field, 이용약관동의:[...field.이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','이메일']});
+                setField({...field, 이용약관동의:[...이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','이메일']});
             }
             else if(field.이용약관동의.includes('이메일') && e.target.value==='SMS'){
-                setField({...field, 이용약관동의:[...field.이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','SMS']});
+                setField({...field, 이용약관동의:[...이용약관동의, '무료배송, 할인쿠폰 등 혜택/정보 수신 동의','SMS']});
             }
             else{
-                setField({...field, 이용약관동의:[...field.이용약관동의, e.target.value]});
+                setField({...field, 이용약관동의:[...이용약관동의, e.target.value]});
             }
         }
         else{ //체크해제된 데이터만 filter()
 
             if(e.target.value==='무료배송, 할인쿠폰 등 혜택/정보 수신 동의'){
-                temp = field.이용약관동의.filter((item)=> item !== e.target.value);
+                temp = 이용약관동의.filter((item)=> item !== e.target.value);
                 temp = temp.filter((item)=> item !== 'SMS');
                 temp = temp.filter((item)=> item !== '이메일');
                 setField({...field, 이용약관동의:temp});
             }
-            else if(field.이용약관동의.includes('SMS') && e.target.value === '이메일'){
-                temp = field.이용약관동의.filter((item)=> item !== '이메일');
+            else if(이용약관동의.includes('SMS') && e.target.value === '이메일'){
+                temp = 이용약관동의.filter((item)=> item !== '이메일');
                 temp = temp.filter((item)=> item !== '무료배송, 할인쿠폰 등 혜택/정보 수신 동의');
                 setField({...field, 이용약관동의:temp});
             }
-            else if(field.이용약관동의.includes('이메일') && e.target.value === 'SMS'){
-                temp = field.이용약관동의.filter((item)=> item !== 'SMS');
+            else if(이용약관동의.includes('이메일') && e.target.value === 'SMS'){
+                temp = 이용약관동의.filter((item)=> item !== 'SMS');
                 temp = temp.filter((item)=> item !== '무료배송, 할인쿠폰 등 혜택/정보 수신 동의');
                 setField({...field, 이용약관동의:temp});
             }
             else{
-                temp = field.이용약관동의.filter((item)=>item !== e.target.value);//삭제하고 나머지만 저장
+                temp = 이용약관동의.filter((item)=>item !== e.target.value);//삭제하고 나머지만 저장
                 setField({...field, 이용약관동의:temp});
             }
         }
